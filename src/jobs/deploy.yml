@@ -1,0 +1,46 @@
+description: >
+  Publish training materials built previously.
+
+parameters:
+  training-name:
+    type: string
+    default: $CIRCLE_PROJECT_REPONAME
+  version:
+    type: string
+    default: $CIRCLE_BRANCH
+docker:
+  - image: google/cloud-sdk:334.0.0-alpine
+steps:
+  - checkout
+  - attach_workspace:
+      at: ./
+  - run:
+      name: Configure Google Cloud CLI
+      command: |
+        echo $GAE_KEY_FILE_CONTENT > gcloud-service-key.json
+        gcloud auth activate-service-account --key-file=gcloud-service-key.json
+        gcloud config set project zen-formations
+        gcloud config set app/use_appengine_api false
+        gcloud config set app/promote_by_default false
+  - run:
+      name: Generate AppEngine configuration
+      command: |
+        cat \<<EOT > dist/app.yml
+        service: << parameters.training-name >>
+        runtime: python27
+        api_version: 1
+        threadsafe: true
+        handlers:
+        - url: /
+          static_files: index.html
+          upload: index.html
+          login: required
+        - url: /(.*)
+          static_files: \1
+          upload: (.*)
+          login: required
+        EOT
+  - run:
+      name: Deploy
+      working_directory: dist
+      command: gcloud app deploy --version << parameters.version >> --verbosity=info ./app.yml

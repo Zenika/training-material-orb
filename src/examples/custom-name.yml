@@ -1,0 +1,23 @@
+description: >
+  Build and publish training materials with custom training name.
+usage:
+  version: 2.1
+
+  orbs:
+    training-material: zenika/training-material@x.y
+
+  workflows:
+    version: 2
+
+    build-and-deploy:
+      jobs:
+        - training-material/build:
+            training-name: my-training
+        - training-material/deploy:
+            training-name: my-training
+            requires:
+              - training-material/build
+            filters:
+              branches:
+                only: master
+            context: training-deploy-zenika

@@ -1,0 +1,7 @@
+version: 2.1
+
+description: >
+  Build and deploy Zenika training materials.
+
+display:
+  source_url: "https://www.github.com/Zenika/training-material-orb"
