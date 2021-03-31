@@ -1,0 +1,24 @@
+description: >
+  Build training materials.
+  PDF and static website.
+
+parameters:
+  training-name:
+    type: string
+    default: $CIRCLE_PROJECT_REPONAME
+docker:
+  - image: zenika/sensei
+steps:
+  - checkout
+  - run:
+      name: Generate PDF
+      command: |
+        /app/bin/sensei.js pdf . << parameters.training-name >>
+        mv pdf dist
+  - run:
+      name: Generate static site
+      command: /app/bin/sensei.js build . << parameters.training-name >>
+  - persist_to_workspace:
+      root: ./
+      paths:
+        - dist/
