@@ -13,11 +13,11 @@ steps:
   - run:
       name: Generate PDF
       command: |
-        /app/bin/sensei.js pdf . << parameters.training-name >>
+        /app/bin/sensei.js pdf --material . --slug << parameters.training-name >>
         mv pdf dist
   - run:
       name: Generate static site
-      command: /app/bin/sensei.js build . << parameters.training-name >>
+      command: /app/bin/sensei.js build --material . --slug << parameters.training-name >>
   - persist_to_workspace:
       root: ./
       paths:
