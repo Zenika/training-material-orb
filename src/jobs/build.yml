@@ -6,6 +6,9 @@ parameters:
   training-name:
     type: string
     default: $CIRCLE_PROJECT_REPONAME
+  extra-opts:
+    type: string
+    default: ''
 docker:
   - image: zenika/sensei
 steps:
@@ -13,11 +16,11 @@ steps:
   - run:
       name: Generate PDF
       command: |
-        /app/bin/sensei.js pdf --material . --slug << parameters.training-name >>
+        /app/bin/sensei.js pdf --material . --slug << parameters.training-name >> << parameters.extra-opts >>
         mv pdf dist
   - run:
       name: Generate static site
-      command: /app/bin/sensei.js build --material . --slug << parameters.training-name >>
+      command: /app/bin/sensei.js build --material . --slug << parameters.training-name >> << parameters.extra-opts >>
   - persist_to_workspace:
       root: ./
       paths:
