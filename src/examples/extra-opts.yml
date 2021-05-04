@@ -1,0 +1,23 @@
+description: >
+  Build and publish training materials with extra sensei build options.
+usage:
+  version: 2.1
+
+  orbs:
+    training-material: zenika/training-material@x.y
+
+  workflows:
+    version: 2
+
+    build-and-deploy:
+      jobs:
+        - training-material/build:
+            # Use 4:3 format instead of default 16:9
+            extra-opts: --slideWidth=1024 --slideHeight=768
+        - training-material/deploy:
+            requires:
+              - training-material/build
+            filters:
+              branches:
+                only: master
+            context: training-deploy-zenika
