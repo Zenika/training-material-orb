@@ -1,6 +1,6 @@
 # Orb Project Template
 
-[![CircleCI Build Status](https://circleci.com/gh/Zenika/training-material-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/Zenika/training-material-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/zenika/training-material)](https://circleci.com/orbs/registry/orb/zenika/training-material) [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Zenika/training-material-orb/master/LICENSE)
+[![CircleCI Build Status](https://circleci.com/gh/Zenika/training-material-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/Zenika/training-material-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/zenika/training-material.svg)](https://circleci.com/orbs/registry/orb/zenika/training-material) [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Zenika/training-material-orb/master/LICENSE)
 
 Build Zenika training materials with [sensei](https://github.com/Zenika/sensei) and publish them.
 
