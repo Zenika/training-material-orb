@@ -9,8 +9,11 @@ parameters:
   extra-opts:
     type: string
     default: ''
+  sensei-version:
+    type: string
+    default: latest
 docker:
-  - image: zenika/sensei
+  - image: zenika/sensei:<< parameters.sensei-version >>
 steps:
   - checkout
   - run:
