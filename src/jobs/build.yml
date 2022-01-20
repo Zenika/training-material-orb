@@ -19,11 +19,11 @@ steps:
   - run:
       name: Generate PDF
       command: |
-        /app/bin/sensei.js pdf --material . --slug << parameters.training-name >> << parameters.extra-opts >>
+        node /app/src/cli/cli.js pdf --material . --slug << parameters.training-name >> << parameters.extra-opts >>
         mv pdf dist
   - run:
       name: Generate static site
-      command: /app/bin/sensei.js build --material . --slug << parameters.training-name >> << parameters.extra-opts >>
+      command: node /app/src/cli/cli.js build --material . --slug << parameters.training-name >> << parameters.extra-opts >>
   - persist_to_workspace:
       root: ./
       paths:
