@@ -51,4 +51,8 @@ steps:
   - run:
       name: Deploy
       working_directory: dist
-      command: gcloud app deploy --version << parameters.version >> --verbosity=info ./app.yml
+      command: |
+        # --version/-v: May only contain lowercase letters, digits, and hyphens. Must begin and end with a letter or digit. Must not exceed 63 characters.
+        VERSION=$(python3 -c "import re, unicodedata; print(re.sub(r'(^-+|-+$)', '', re.sub(r'[^a-z0-9-]+', '-', ''.join(c for c in unicodedata.normalize('NFD', '<< parameters.version >>') if unicodedata.category(c) != 'Mn').lower())[:63]))")
+        gcloud app deploy --version $VERSION --verbosity=info ./app.yml
+        echo "Published at https://$VERSION-dot-<< parameters.training-name >>-dot-zen-formations.appspot.com/"
