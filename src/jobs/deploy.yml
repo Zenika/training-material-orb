@@ -53,6 +53,22 @@ steps:
       working_directory: dist
       command: |
         # --version/-v: May only contain lowercase letters, digits, and hyphens. Must begin and end with a letter or digit. Must not exceed 63 characters.
-        VERSION=$(python3 -c "import re, unicodedata; print(re.sub(r'(^-+|-+$)', '', re.sub(r'[^a-z0-9-]+', '-', ''.join(c for c in unicodedata.normalize('NFD', '<< parameters.version >>') if unicodedata.category(c) != 'Mn').lower())[:63-len('-dot-<< parameters.training-name >>-dot-zen-formations')]))")
+        VERSION=$(python3 -c "
+        import re
+        import sys
+        import unicodedata
+        input = '<< parameters.version >>'
+        if input in {'main', 'master'}:
+            output = input
+        else:
+            output = ''.join(c for c in unicodedata.normalize('NFD', input) if unicodedata.category(c) != 'Mn')  # remove diacritics
+            output = output.lower()
+            output = re.sub(r'[^a-z0-9-]+', '-', output)  # replace non alphanum
+            output = re.sub(r'^-+', '', output)  # remove leading hyphens
+            max_size = max(4, 63 - len('-dot-<< parameters.training-name >>-dot-zen-formations'))  # max 63 char for full subdomain (and min 4 for branch)
+            output = output[:max_size]
+            output = re.sub(r'-+$', '', output)  # remove trailing hyphens
+        print(output)
+        ")
         gcloud app deploy --version $VERSION --verbosity=info ./app.yml
         echo "Published at https://$VERSION-dot-<< parameters.training-name >>-dot-zen-formations.appspot.com/"
