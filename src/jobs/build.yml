@@ -20,6 +20,7 @@ steps:
       name: Generate PDF
       command: |
         node /app/src/cli/cli.js pdf --material . --slug << parameters.training-name >> << parameters.extra-opts >>
+        ls pdf/
         mv pdf dist
   - run:
       name: Generate static site
