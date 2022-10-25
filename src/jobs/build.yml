@@ -19,12 +19,12 @@ steps:
   - run:
       name: Generate PDF
       command: |
-        node /app/src/cli/cli.js pdf --material . --slug << parameters.training-name >> << parameters.extra-opts >>
+        node /app/src/cli/cli.js pdf --material . --slug << parameters.training-name >> --repositoryUrl https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME << parameters.extra-opts >>
         ls pdf/
         mv pdf dist
   - run:
       name: Generate static site
-      command: node /app/src/cli/cli.js build --material . --slug << parameters.training-name >> << parameters.extra-opts >>
+      command: node /app/src/cli/cli.js build --material . --slug << parameters.training-name >> --repositoryUrl https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME << parameters.extra-opts >>
   - persist_to_workspace:
       root: ./
       paths:
