@@ -21,15 +21,16 @@ steps:
         gcloud auth activate-service-account --key-file=gcloud-service-key.json
         gcloud config set project zen-formations
         gcloud config set app/use_appengine_api false
-  - unless:
-      condition:
-        matches:
-          pattern: ^(main|master)$
-          value: << parameters.version >>
-      steps:
-        - run:
-            name: Do not promote unless main branch
-            command: gcloud config set app/promote_by_default false
+  - run:
+      name: Promote only main branch
+      command: |
+        if [ "<< parameters.version >>" = 'main' -o "<< parameters.version >>" = 'master' ]; then
+          echo "Will promote"
+          gcloud config set app/promote_by_default true
+        else
+          echo "Will not promote"
+          gcloud config set app/promote_by_default false
+        fi
   - run:
       name: Generate AppEngine configuration
       command: |
