@@ -1,7 +1,7 @@
 version: 2.1
 
 description: >
-  Build and deploy Zenika training materials.
+  Build Zenika training materials with [sensei](https://github.com/Zenika/sensei) and publish them on https://training-material.zenika.com/.
 
 display:
   source_url: "https://www.github.com/Zenika/training-material-orb"
