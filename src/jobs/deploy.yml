@@ -10,6 +10,7 @@ parameters:
     default: $CIRCLE_BRANCH
 docker:
   - image: google/cloud-sdk:334.0.0-alpine
+resource_class: small
 steps:
   - checkout
   - attach_workspace:
