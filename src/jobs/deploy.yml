@@ -9,7 +9,7 @@ parameters:
     type: string
     default: $CIRCLE_BRANCH
 docker:
-  - image: google/cloud-sdk:334.0.0-alpine
+  - image: gcr.io/google.com/cloudsdktool/google-cloud-cli:459.0.0-alpine
 resource_class: small
 steps:
   - checkout
@@ -21,7 +21,6 @@ steps:
         echo $GAE_KEY_FILE_CONTENT > gcloud-service-key.json
         gcloud auth activate-service-account --key-file=gcloud-service-key.json
         gcloud config set project zen-formations
-        gcloud config set app/use_appengine_api false
   - run:
       name: Promote only main branch
       command: |
@@ -37,9 +36,8 @@ steps:
       command: |
         cat \<<EOT > dist/app.yml
         service: << parameters.training-name >>
-        runtime: python27
-        api_version: 1
-        threadsafe: true
+        runtime: python312
+        app_engine_apis: false
         handlers:
         - url: /
           static_files: index.html
