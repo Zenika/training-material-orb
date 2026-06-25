@@ -9,7 +9,7 @@ docker:
   - image: zenika/sensei:<< parameters.sensei-version >>
 steps:
   - checkout
-  - lint:
+  - run:
       name: Lint slides
       command: |
         node /app/src/cli/cli.js lint slides/
