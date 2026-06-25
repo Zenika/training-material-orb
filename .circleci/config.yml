@@ -18,7 +18,8 @@ workflows:
           filters: *filters
           exclude: RC009
       - orb-tools/publish:
-          orb-name: zenika/training-material
+          orb_name: zenika/training-material
+          vcs_type: << pipeline.project.type >>
           requires:
             [orb-tools/lint, orb-tools/review, orb-tools/pack]
           # Use a context to hold your publishing token.
