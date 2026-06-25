@@ -12,6 +12,7 @@ usage:
 
     build-and-deploy:
       jobs:
+        - training-material/lint
         - training-material/build
         - training-material/deploy:
             requires:
