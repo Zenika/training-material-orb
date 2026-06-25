@@ -13,11 +13,19 @@ workflows:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       - orb-tools/pack:
           filters: *filters
+      - training-material/lint:
+          filters: *filters
+          slides-path: /tmp/sensei/example/Slides
+          pre-steps:
+            - run:
+                name: Clone sensei example
+                command: git clone --depth 1 https://github.com/Zenika/sensei /tmp/sensei
       - orb-tools/publish:
           orb_name: zenika/training-material
           vcs_type: << pipeline.project.type >>
           requires:
             - orb-tools/pack
+            - training-material/lint
           context: orb-publishing
           filters:
             branches:
