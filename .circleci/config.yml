@@ -1,7 +1,7 @@
 version: 2.1
 setup: true
 orbs:
-  orb-tools: circleci/orb-tools@11.5
+  orb-tools: circleci/orb-tools@12.4.0
 
 filters: &filters
   tags:
@@ -16,10 +16,10 @@ workflows:
           filters: *filters
       - orb-tools/review:
           filters: *filters
-          exclude: RC009
+          exclude: RC009,RC010
       - orb-tools/publish:
-          orb-name: zenika/training-material
-          vcs-type: << pipeline.project.type >>
+          orb_name: zenika/training-material
+          vcs_type: << pipeline.project.type >>
           requires:
             [orb-tools/lint, orb-tools/review, orb-tools/pack]
           # Use a context to hold your publishing token.
@@ -27,7 +27,8 @@ workflows:
           filters: *filters
       # Triggers the next workflow in the Orb Development Kit.
       - orb-tools/continue:
-          pipeline-number: << pipeline.number >>
-          vcs-type: << pipeline.project.type >>
+          orb_name: zenika/training-material
+          pipeline_number: << pipeline.number >>
+          vcs_type: << pipeline.project.type >>
           requires: [orb-tools/publish]
           filters: *filters

@@ -12,6 +12,8 @@ usage:
 
     build-and-deploy:
       jobs:
+        - training-material/lint:
+            sensei-version: test
         - training-material/build:
             sensei-version: test
         - training-material/deploy:

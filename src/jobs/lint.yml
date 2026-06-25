@@ -1,0 +1,18 @@
+description: >
+  Lint slides
+
+parameters:
+  sensei-version:
+    type: string
+    default: latest
+  slides-path:
+    type: string
+    default: Slides/
+docker:
+  - image: zenika/sensei:<< parameters.sensei-version >>
+steps:
+  - checkout
+  - run:
+      name: Lint slides
+      command: |
+        node /app/src/cli/cli.js lint << parameters.slides-path >>
