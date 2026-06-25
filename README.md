@@ -10,6 +10,17 @@ Build Zenika training materials with [sensei](https://github.com/Zenika/sensei) 
 
 [CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
 
+### How to Test
+
+To test a development version of the orb before publishing, use the `dev:alpha` tag in the training's CircleCI configuration:
+
+```yaml
+orbs:
+  training-material: zenika/training-material@dev:alpha
+```
+
+This tag is automatically published on every push to the main branch, before the production release.
+
 ### How to Contribute
 
 We welcome [issues](https://github.com/Zenika/training-material-orb/issues) to and [pull requests](https://github.com/Zenika/training-material-orb/pulls) against this repository!
