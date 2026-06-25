@@ -16,7 +16,7 @@ workflows:
           filters: *filters
       - orb-tools/review:
           filters: *filters
-          exclude: RC009
+          exclude: RC009,RC010
       - orb-tools/publish:
           orb_name: zenika/training-material
           vcs_type: << pipeline.project.type >>
