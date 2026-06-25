@@ -7,7 +7,7 @@ parameters:
     default: latest
   slides-path:
     type: string
-    default: slides/
+    default: Slides/
 docker:
   - image: zenika/sensei:<< parameters.sensei-version >>
 steps:
