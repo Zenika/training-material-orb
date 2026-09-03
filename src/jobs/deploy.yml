@@ -9,7 +9,7 @@ parameters:
     type: string
     default: $CIRCLE_BRANCH
 docker:
-  - image: gcr.io/google.com/cloudsdktool/google-cloud-cli:459.0.0-alpine
+  - image: gcr.io/google.com/cloudsdktool/google-cloud-cli:583.0.0-alpine
 resource_class: small
 steps:
   - checkout
