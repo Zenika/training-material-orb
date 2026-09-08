@@ -1,41 +1,9 @@
-# zenika/training-material Orb
+# ⚠️ Ce dépôt est archivé
 
-[![CircleCI Build Status](https://circleci.com/gh/Zenika/training-material-orb.svg?style=shield "CircleCI Build Status")](https://circleci.com/gh/Zenika/training-material-orb) [![CircleCI Orb Version](https://badges.circleci.com/orbs/zenika/training-material.svg)](https://circleci.com/orbs/registry/orb/zenika/training-material) [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/Zenika/training-material-orb/master/LICENSE)
+Cet orb a été migré vers **[Zenika-Training/training-material-orb](https://github.com/Zenika-Training/training-material-orb)** le 2026-09-03.
 
-Build Zenika training materials with [sensei](https://github.com/Zenika/sensei) and publish them on https://training-material.zenika.com/.
+Ce dépôt (`Zenika/training-material-orb`) n'a plus été mis à jour depuis cette date et alimentait encore le namespace CircleCI `zenika/training-material`, gelé à la version `0.2.3` — déconnecté de toutes les versions publiées depuis (2.0.0 et suivantes) sur le nouveau namespace `zenika-training/training-material`.
 
-## Resources
+**Toute formation référençant encore `zenika/training-material` doit basculer vers `zenika-training/training-material`.**
 
-[CircleCI Orb Registry Page](https://circleci.com/orbs/registry/orb/zenika/training-material) - The official registry page of this orb for all versions, executors, commands, and jobs described.
-
-[CircleCI Orb Docs](https://circleci.com/docs/2.0/orb-intro/#section=configuration) - Docs for using, creating, and publishing CircleCI Orbs.
-
-### How to Test
-
-To test a development version of the orb before publishing, use the `dev:alpha` tag in the training's CircleCI configuration:
-
-```yaml
-orbs:
-  training-material: zenika/training-material@dev:alpha
-```
-
-This tag is automatically published on every push to the main branch, before the production release.
-
-### How to Contribute
-
-We welcome [issues](https://github.com/Zenika/training-material-orb/issues) to and [pull requests](https://github.com/Zenika/training-material-orb/pulls) against this repository!
-
-### How to Publish An Update
-
-1. Merge pull requests with desired changes to the main branch.
-2. Find the current version of the orb.
-    - You can run `circleci orb info zenika/training-material | grep "Latest"` to see the current version.
-3. Create a [new Release](https://github.com/Zenika/training-material-orb/releases/new) on GitHub.
-    - Click "Choose a tag" and _create_ a new [semantically versioned](http://semver.org/) tag. (ex: v1.0.0)
-      - We will have an opportunity to change this before we publish if needed after the next step.
-4.  Click _"+ Auto-generate release notes"_.
-    - This will create a summary of all of the merged pull requests since the previous release.
-    - If you have used _[Conventional Commit Messages](https://conventionalcommits.org/)_ it will be easy to determine what types of changes were made, allowing you to ensure the correct version tag is being published.
-5. Now ensure the version tag selected is semantically accurate based on the changes included.
-6. Click _"Publish Release"_.
-    - This will push a new tag and trigger your publishing pipeline on CircleCI.
+Voir [Training-support/concepts-et-adr/adr/ADR-003_publication_orb.md](https://github.com/Zenika-Training/Training-support/blob/main/concepts-et-adr/adr/ADR-003_publication_orb.md) pour le contexte complet.
